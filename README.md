@@ -1,6 +1,6 @@
 ## project description
 
-A docker super light MariaDB installation on top of Alpine Linux for development purposes
+A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
 - MariaDB 10.4.12
 - zsh
