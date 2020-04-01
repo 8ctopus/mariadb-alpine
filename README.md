@@ -1,6 +1,18 @@
+A super lightweight MariaDB installation on top of Alpine Linux for development purposes
+
+- MariaDB 10.4.12
+- zsh
+
+## cool features
+
+- MariaDB configuration files are exposed on the host.
+- All changes to config files are automatically applied (hot reload).
+
 ## start container
 
-    docker run -it -p 3306:3306 8ctopus/mariadb
+    docker-compose up
+
+    docker run -it -p 3306:3306 8ct8pus/mariadb-alpine
 
 ## connect to database
 
@@ -11,8 +23,8 @@
 
 ## build docker image
 
-    docker build -t 8ctopus/mariadb:latest .
+    docker build -t 8ct8pus/mariadb-alpine:latest .
 
-## more info
+## more info about image
 
     https://wiki.alpinelinux.org/wiki/MariaDB
