@@ -47,6 +47,9 @@ VOLUME ["/var/lib/mysql"]
 ADD --chown=root:root include/start.sh /start.sh
 ADD --chown=mysql:mysql include/init.sql /init.sql
 
+# make entry point script executable
+RUN chmod +x /start.sh
+
 # set working dir
 WORKDIR /var/lib/mysql/
 
