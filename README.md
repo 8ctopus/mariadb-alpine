@@ -1,3 +1,5 @@
+## project description
+
 A super lightweight MariaDB installation on top of Alpine Linux for development purposes
 
 - MariaDB 10.4.12
@@ -17,9 +19,9 @@ A super lightweight MariaDB installation on top of Alpine Linux for development 
 ## connect to database
 
     hostname: localhost
+    port: 3306
     user: root
     password: 123
-    port: 3306
 
 ## build docker image
 
