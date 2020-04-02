@@ -5,11 +5,7 @@ EXPOSE 3306
 
 # install console tools
 RUN apk add \
-    curl \
-    inotify-tools \
-    nano \
-    tar \
-    unzip
+    inotify-tools
 
 # install zsh
 RUN apk add \
