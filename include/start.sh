@@ -112,5 +112,5 @@ restart_mariadb()
 
 while true; do
     # restart mariadb if any file in /etc/my.cnf.d changes
-    inotifywait --quiet --event modify,create,delete --recursive /etc/my.cnf.d/ && restart_mariadb
+    inotifywait --quiet --event modify,create,delete --timeout 3 --recursive /etc/my.cnf.d/ && restart_mariadb
 done
