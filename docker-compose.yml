@@ -3,9 +3,14 @@ version: '3.7'
 services:
   mariadb:
     image: 8ct8pus/mariadb-alpine:latest
-    container_name: dev-db
+    container_name: mariadb
     ports:
       - 3306:3306
     volumes:
       # expose mariadb config to host
       - ./etc/:/docker/etc/
+      # save mariadb databases to volume
+      - database:/var/lib/mysql/
+
+volumes:
+  database:
