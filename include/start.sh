@@ -4,23 +4,29 @@ echo "..."
 echo "Start container database..."
 
 # check if we should expose mariadb to host
+# /docker/etc/ must be set in docker-compose
 if [ -d /docker/etc/ ];
 then
     echo "Expose mariadb to host..."
     sleep 3
 
-    # check if directory exists
+    # check if config exists on host
     if [ ! -d /docker/etc/my.cnf.d/ ];
     then
-        echo "Expose mariadb to host - copy files..."
+        # config doesn't exist on host
+        echo "Expose mariadb to host - copy config..."
+
+        # copy config to host
         cp -r /etc/my.cnf.d/ /docker/etc/
-        rm -rf /etc/my.cnf.d/
-        ln -s /docker/etc/my.cnf.d /etc/my.cnf.d
     else
         echo "Expose mariadb to host - config exists on host"
-        rm -rf /etc/my.cnf.d/
-        ln -s /docker/etc/my.cnf.d /etc/my.cnf.d
     fi
+
+    # delete config
+    rm -rf /etc/my.cnf.d/
+
+    # create symbolic link so host config is used
+    ln -s /docker/etc/my.cnf.d /etc/my.cnf.d
 
     echo "Expose mariadb to host - OK"
 fi
