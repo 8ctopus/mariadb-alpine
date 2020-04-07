@@ -3,26 +3,26 @@
 echo "..."
 echo "Start container database..."
 
-# check if we should expose /etc/my.cnf.d/ to host
+# check if we should expose mariadb to host
 if [ -d /docker/etc/ ];
 then
-    echo "Expose /etc/my.cnf.d/ to host..."
+    echo "Expose mariadb to host..."
     sleep 3
 
     # check if directory exists
     if [ ! -d /docker/etc/my.cnf.d/ ];
     then
-        echo "Expose /etc/my.cnf.d/ to host - copy files..."
+        echo "Expose mariadb to host - copy files..."
         cp -r /etc/my.cnf.d/ /docker/etc/
         rm -rf /etc/my.cnf.d/
         ln -s /docker/etc/my.cnf.d /etc/my.cnf.d
     else
-        echo "Expose /etc/my.cnf.d/ to host - config exists on host"
+        echo "Expose mariadb to host - config exists on host"
         rm -rf /etc/my.cnf.d/
         ln -s /docker/etc/my.cnf.d /etc/my.cnf.d
     fi
 
-    echo "Expose /etc/my.cnf.d/ to host - OK"
+    echo "Expose mariadb to host - OK"
 fi
 
 # check if database exists
