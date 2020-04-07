@@ -11,13 +11,31 @@ then
     sleep 3
 
     # check if config exists on host
-    if [ ! -d /docker/etc/my.cnf.d/ ];
+    if [ -z "$(ls -A /docker/etc/my.cnf.d/ 2> /dev/null)" ];
     then
         # config doesn't exist on host
         echo "Expose mariadb to host - copy config..."
 
+        # this is necessary if host config was used but then deleted
+        # check if config is a symbolic link
+        if [ -L /etc/my.cnf.d/ ];
+        then
+            # delete symbolic link
+            rm /etc/my.cnf.d/
+
+            # restore config from backup
+            cp -r /etc/my.cnf.d.bak/ /etc/my.cnf.d/
+        fi
+
         # copy config to host
         cp -r /etc/my.cnf.d/ /docker/etc/
+
+        # check if config backup exists
+        if [ ! -d /etc/my.cnf.d.bak/ ];
+        then
+            # create config backup
+            mv /etc/my.cnf.d/ /etc/my.cnf.d.bak/
+        fi
     else
         echo "Expose mariadb to host - config exists on host"
     fi
