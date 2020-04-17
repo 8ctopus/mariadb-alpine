@@ -37,7 +37,7 @@ RUN rc-status; \
 VOLUME ["/sys/fs/cgroup"]
 
 # make database persistent
-VOLUME ["/var/lib/mysql"]
+#VOLUME ["/var/lib/mysql"]
 
 # add scripts
 ADD --chown=root:root include/start.sh /start.sh
