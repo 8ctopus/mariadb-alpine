@@ -15,10 +15,6 @@ RUN apk add \
 # configure zsh
 ADD --chown=root:root include/zshrc /etc/zsh/zshrc
 
-# install openrc
-RUN apk add \
-    openrc
-
 # install mariadb
 RUN apk add \
     mariadb \
@@ -27,14 +23,6 @@ RUN apk add \
 # enable remote connections to mariadb from any IP
 RUN sed -i 's|skip-networking|#skip-networking|g' /etc/my.cnf.d/mariadb-server.cnf
 RUN sed -i 's|#bind-address=0.0.0.0|bind-address=0.0.0.0|g' /etc/my.cnf.d/mariadb-server.cnf
-
-# hack to add mariadb as a service
-RUN rc-status; \
-    rc-update add mariadb; \
-    touch /run/openrc/softlevel
-
-# necessary for services to be started
-VOLUME ["/sys/fs/cgroup"]
 
 # make database persistent
 #VOLUME ["/var/lib/mysql"]

@@ -49,28 +49,31 @@ if [ -e /var/lib/mysql/ib_logfile0 ]
 then
     echo "Database exists"
 
-    # start service mariadb
-    echo "Start service mariadb..."
-    rc-service mariadb restart
+    # start mariadb
+    echo "Start mariadb..."
+    /usr/bin/mysqld_safe --nowatch
 else
     # create database
-    echo "Install database..."
+    echo "Create database..."
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
-    # start service mariadb
-    echo "Install database - start service mariadb..."
-    rc-service mariadb start
+    # start mariadb
+    echo "Create database - start mariadb..."
+    /usr/bin/mysqld_safe --nowatch
 
     # check if mariadb is running
     if pgrep -x /usr/bin/mysqld > /dev/null
     then
         # configure database
-        echo "Install database - configure users..."
+        echo "Create database - configure users..."
+
+        sleep 1
+
         mysql < /init.sql
 
-        echo "Install database - OK"
+        echo "Create database - OK"
     else
-        echo "Install database - FAILED"
+        echo "Create database - FAILED"
     fi
 fi
 
@@ -96,9 +99,9 @@ stop_container()
 {
     echo ""
     echo "Stop container database... - received SIGTERM signal"
-    echo "Stop service mariadb ..."
-    rc-service mariadb stop
-    echo "Stop service mariadb - OK"
+    echo "Stop mariadb ..."
+    killall -s SIGTERM mysqld
+    echo "Stop mariadb - OK"
     echo "Stop container database - OK"
     exit
 }
@@ -115,7 +118,10 @@ restart_mariadb()
     then
         # restart mariadb
         echo "Restart mariadb..."
-        rc-service mariadb restart
+
+        killall -s SIGTERM mysqld
+        sleep 2
+        /usr/bin/mysqld_safe --nowatch
 
         # check if mariadb is running
         if pgrep -x /usr/bin/mysqld > /dev/null
