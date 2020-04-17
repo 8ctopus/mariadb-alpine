@@ -24,8 +24,10 @@ RUN apk add \
 RUN sed -i 's|skip-networking|#skip-networking|g' /etc/my.cnf.d/mariadb-server.cnf
 RUN sed -i 's|#bind-address=0.0.0.0|bind-address=0.0.0.0|g' /etc/my.cnf.d/mariadb-server.cnf
 
-# make database persistent
-#VOLUME ["/var/lib/mysql"]
+# change mariadb log file
+RUN touch /var/log/mysqld.log
+RUN chown mysql:mysql /var/log/mysqld.log
+RUN sed -i '/^\[server\]$/a log-error=\/var\/log\/mysqld.log' /etc/my.cnf.d/mariadb-server.cnf
 
 # add scripts
 ADD --chown=root:root include/start.sh /start.sh

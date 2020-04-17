@@ -9,8 +9,9 @@ services:
     volumes:
       # expose mariadb config to host
       - ./etc/:/docker/etc/
-      # save mariadb databases to named volume
+      # expose mariadb log to host
+      - ./log/:/var/log/
+      # save mariadb database to named volume
       - database:/var/lib/mysql/
-
 volumes:
   database:
