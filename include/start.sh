@@ -113,25 +113,21 @@ restart_mariadb()
 {
     sleep 0.5
 
-    # test mariadb config
-    if ! mysqld --help 2>&1 | grep -ci error
+    # restart mariadb
+    echo "Restart mariadb..."
+
+    killall -s SIGTERM mysqld > /dev/null
+
+    sleep 3
+    /usr/bin/mysqld_safe --nowatch
+    sleep 3
+
+    # check if mariadb is running
+    if pgrep -x /usr/bin/mysqld > /dev/null
     then
-        # restart mariadb
-        echo "Restart mariadb..."
-
-        killall -s SIGTERM mysqld
-        sleep 2
-        /usr/bin/mysqld_safe --nowatch
-
-        # check if mariadb is running
-        if pgrep -x /usr/bin/mysqld > /dev/null
-        then
-            echo "Restart mariadb - OK"
-        else
-            echo "Restart mariadb - FAILED"
-        fi
+        echo "Restart mariadb - OK"
     else
-        echo "Restart mariadb - FAILED - syntax error"
+        echo "Restart mariadb - FAILED - syntax error?"
     fi
 }
 
