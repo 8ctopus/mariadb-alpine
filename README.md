@@ -16,8 +16,6 @@ The docker image size is 188 MB.
 
     docker-compose up
 
-    docker run -p 3306:3306 8ct8pus/mariadb-alpine:latest
-
 ## connect to database
 
     hostname: localhost
@@ -27,24 +25,25 @@ The docker image size is 188 MB.
 
 ## build docker image
 
-    docker build -t 8ct8pus/mariadb-alpine:latest .
+    docker build -t 8ct8pus/mariadb-alpine:dev .
 
 ## get console to container
 
-    docker exec -it dev-db zsh
+    docker exec -it mariadb zsh
 
 ## extend the docker image
 
 In this example, we add curl.
 
     docker-compose up --detach
-    docker exec -it dev-web zsh
+    docker exec -it mariadb zsh
     apk add curl
     exit
-    docker-compose stop
-    docker commit dev-web user/mariadb-alpine-curl:latest
 
-To use the new image, run it or update the image link in the docker-compose file.
+    docker-compose stop
+    docker commit mariadb mariadb-alpine-curl:dev
+
+To use the new image, update the image link in the docker-compose file.
 
 ## more info about image
 
