@@ -23,13 +23,13 @@ The docker image size is 188 MB.
     user: root
     password: 123
 
-## build docker image
-
-    docker build -t 8ct8pus/mariadb-alpine:dev .
-
 ## get console to container
 
     docker exec -it mariadb zsh
+
+## build docker image
+
+    docker build -t mariadb-alpine:dev .
 
 ## extend the docker image
 
