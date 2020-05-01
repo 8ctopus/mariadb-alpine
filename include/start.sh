@@ -10,6 +10,14 @@ then
     echo "Expose mariadb to host..."
     sleep 3
 
+    # check if config backup exists
+    if [ ! -d /etc/my.cnf.d.bak/ ];
+    then
+        # create config backup
+        echo "Expose mariadb to host - backup container config"
+        cp -r /etc/my.cnf.d/ /etc/my.cnf.d.bak/
+    fi
+
     # check if config exists on host
     if [ -z "$(ls -A /docker/etc/my.cnf.d/ 2> /dev/null)" ];
     then
@@ -23,10 +31,6 @@ then
             echo "Expose mariadb to host - restore config from backup"
             rm /etc/my.cnf.d/
             cp -r /etc/my.cnf.d.bak/ /etc/my.cnf.d/
-        else
-            # create config backup
-            echo "Expose mariadb to host - backup container config"
-            cp -r /etc/my.cnf.d/ /etc/my.cnf.d.bak/
         fi
 
         # copy config to host
