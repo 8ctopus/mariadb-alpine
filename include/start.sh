@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "..."
+echo ""
 echo "Start container database..."
 
 # check if we should expose mariadb to host
@@ -106,10 +106,11 @@ stop_container()
     exit
 }
 
-# wait for termination signal
+# catch termination signals
+# https://unix.stackexchange.com/questions/317492/list-of-kill-signals
 trap stop_container SIGTERM
 
-restart_mariadb()
+restart_processes()
 {
     sleep 0.5
 
@@ -131,7 +132,8 @@ restart_mariadb()
     fi
 }
 
+# infinite loop, will only stop on termination signal
 while true; do
     # restart mariadb if any file in /etc/my.cnf.d changes
-    inotifywait --quiet --event modify,create,delete --timeout 3 --recursive /etc/my.cnf.d/ && restart_mariadb
+    inotifywait --quiet --event modify,create,delete --timeout 3 --recursive /etc/my.cnf.d/ && restart_processes
 done
