@@ -29,7 +29,7 @@ then
         then
             # restore config from backup
             echo "Expose mariadb to host - restore config from backup"
-            rm /etc/my.cnf.d/
+            rm /etc/my.cnf.d/ 2> /dev/null
             cp -r /etc/my.cnf.d.bak/ /etc/my.cnf.d/
         fi
 
@@ -42,7 +42,7 @@ then
 
     # create symbolic link so host config is used
     echo "Expose mariadb to host - create symlink"
-    rm -rf /etc/my.cnf.d/
+    rm -rf /etc/my.cnf.d/ 2> /dev/null
     ln -s /docker/etc/my.cnf.d /etc/my.cnf.d
 
     echo "Expose mariadb to host - OK"
@@ -90,12 +90,14 @@ then
     echo "port: 3306"
     echo "user: root"
     echo "password: 123"
-    echo "-----------------------------------------------"
+    echo "-----------------------------------------------------"
     echo "Start container database - OK - ready for connections"
 else
     echo "Start container database - FAILED"
     exit
 fi
+
+echo "-----------------------------------------------------"
 
 # https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/
 # https://stackoverflow.com/questions/59521712/catching-sigterm-from-alpine-image
