@@ -92,12 +92,12 @@ then
     echo "password: 123"
     echo "-----------------------------------------------------"
     echo "Start container database - OK - ready for connections"
+    echo "-----------------------------------------------------"
 else
     echo "Start container database - FAILED"
+    echo "-----------------------------------------------------"
     exit
 fi
-
-echo "-----------------------------------------------------"
 
 # https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/
 # https://stackoverflow.com/questions/59521712/catching-sigterm-from-alpine-image
