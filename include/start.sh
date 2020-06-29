@@ -79,9 +79,12 @@ else
     else
         echo "Create database - FAILED"
     fi
+
+    echo "-----------------------------------------------------"
 fi
 
-echo "-----------------------------------------------"
+# small sleep to allow mysql to start
+sleep 1
 
 # check if mariadb is running
 if pgrep -x /usr/bin/mysqld > /dev/null
