@@ -79,8 +79,6 @@ else
     else
         echo "Create database - FAILED"
     fi
-
-    echo "-----------------------------------------------------"
 fi
 
 # small sleep to allow mysql to start
@@ -89,6 +87,7 @@ sleep 1
 # check if mariadb is running
 if pgrep -x /usr/bin/mysqld > /dev/null
 then
+    echo "-----------------------------------------------------"
     echo "host: localhost"
     echo "port: 3306"
     echo "user: root"
@@ -98,7 +97,7 @@ then
     echo "-----------------------------------------------------"
 else
     echo "Start container database - FAILED"
-    echo "-----------------------------------------------------"
+    echo "---------------------------------"
     exit
 fi
 
