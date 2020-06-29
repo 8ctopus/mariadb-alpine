@@ -45,6 +45,6 @@ In this example, we add curl.
 
 To use the new image, update the image link in the docker-compose file.
 
-## more info about image
+## more info about the image
 
     https://wiki.alpinelinux.org/wiki/MariaDB
