@@ -88,16 +88,16 @@ sleep 1
 if pgrep -x /usr/bin/mysqld > /dev/null
 then
     echo "-----------------------------------------------------"
+    echo "Start container database - OK - ready for connections"
+    echo "-----------------------------------------------------"
     echo "host: localhost"
     echo "port: 3306"
     echo "user: root"
     echo "password: 123"
     echo "-----------------------------------------------------"
-    echo "Start container database - OK - ready for connections"
-    echo "-----------------------------------------------------"
 else
-    echo "Start container database - FAILED"
-    echo "---------------------------------"
+    echo "Start container database - FAILED - exit"
+    echo "----------------------------------------"
     exit
 fi
 
