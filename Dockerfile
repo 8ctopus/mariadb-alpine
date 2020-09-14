@@ -38,13 +38,13 @@ RUN chown mysql:mysql /var/log/mysqld.log
 RUN sed -i '/^\[server\]$/a log-error=\/var\/log\/mysqld.log' /etc/my.cnf.d/mariadb-server.cnf
 
 # add scripts
-ADD --chown=root:root include/start.sh /start.sh
+ADD --chown=root:root include/start.sh /tmp/start.sh
 
 # make entry point script executable
-RUN chmod +x /start.sh
+RUN chmod +x /tmp/start.sh
 
 # set working dir
 WORKDIR /var/lib/mysql/
 
 # set entrypoint
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/tmp/start.sh"]
