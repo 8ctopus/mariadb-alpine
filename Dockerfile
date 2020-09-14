@@ -2,6 +2,11 @@ FROM alpine:3.12
 
 # expose port
 EXPOSE 3306
+# update apk repositories
+RUN apk update
+
+# upgrade all
+RUN apk upgrade
 
 # install console tools
 RUN apk add \
@@ -39,4 +44,5 @@ RUN chmod +x /start.sh
 # set working dir
 WORKDIR /var/lib/mysql/
 
+# set entrypoint
 ENTRYPOINT ["/start.sh"]
