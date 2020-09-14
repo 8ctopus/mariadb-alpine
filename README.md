@@ -5,7 +5,7 @@ A super light docker MariaDB installation on top of Alpine Linux for development
 - MariaDB 10.4.13
 - zsh
 
-The docker image size is 188 MB.
+The docker image size is 181 MB.
 
 ## cool features
 
@@ -14,34 +14,44 @@ The docker image size is 188 MB.
 
 ## start container
 
-    docker-compose up
+```bash
+docker-compose up
+```
 
 ## connect to database
 
-    hostname: localhost
-    port: 3306
-    user: root
-    password: 123
+```
+hostname: localhost
+port: 3306
+user: root
+password: 123
+```
 
 ## get console to container
 
-    docker exec -it mariadb zsh
+```bash
+docker exec -it mariadb zsh
+```
 
 ## build docker image
 
-    docker build -t mariadb-alpine:dev .
+```bash
+docker build -t mariadb-alpine:dev .
+```
 
 ## extend the docker image
 
 In this example, we add curl.
 
-    docker-compose up --detach
-    docker exec -it mariadb zsh
-    apk add curl
-    exit
+```bash
+docker-compose up --detach
+docker exec -it mariadb zsh
+apk add curl
+exit
 
-    docker-compose stop
-    docker commit mariadb mariadb-alpine-curl:dev
+docker-compose stop
+docker commit mariadb mariadb-alpine-curl:dev
+```
 
 To use the new image, update the image link in the docker-compose file.
 
