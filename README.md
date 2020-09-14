@@ -24,7 +24,7 @@ docker-compose up
 hostname: localhost
 port: 3306
 user: root
-password: 123
+password: 123 (ROOT_PASSWORD environmental variable)
 ```
 
 ## get console to container
