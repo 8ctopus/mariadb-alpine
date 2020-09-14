@@ -2,6 +2,9 @@ FROM alpine:3.12
 
 # expose port
 EXPOSE 3306
+
+ENV ROOT_PASSWORD 123
+
 # update apk repositories
 RUN apk update
 
@@ -36,7 +39,6 @@ RUN sed -i '/^\[server\]$/a log-error=\/var\/log\/mysqld.log' /etc/my.cnf.d/mari
 
 # add scripts
 ADD --chown=root:root include/start.sh /start.sh
-ADD --chown=mysql:mysql include/init.sql /init.sql
 
 # make entry point script executable
 RUN chmod +x /start.sh

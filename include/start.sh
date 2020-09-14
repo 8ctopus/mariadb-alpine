@@ -68,12 +68,20 @@ else
     # check if mariadb is running
     if pgrep -x /usr/bin/mysqld > /dev/null
     then
-        # configure database
+        # create root user with remote access
         echo "Create database - configure users..."
 
         sleep 1
 
-        mysql < /init.sql
+        mysql <<-EOF
+USE mysql;
+
+# create user root with access from any host
+CREATE USER 'root'@'%' IDENTIFIED BY '$ROOT_PASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+EOF
 
         echo "Create database - OK"
     else
@@ -93,7 +101,7 @@ then
     echo "host: localhost"
     echo "port: 3306"
     echo "user: root"
-    echo "password: 123"
+    echo "password: $ROOT_PASSWORD"
     echo "-----------------------------------------------------"
 else
     echo "Start container database - FAILED - exit"

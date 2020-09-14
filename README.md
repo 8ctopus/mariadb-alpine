@@ -2,7 +2,7 @@
 
 A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
-- MariaDB 10.4.12
+- MariaDB 10.4.13
 - zsh
 
 The docker image size is 188 MB.

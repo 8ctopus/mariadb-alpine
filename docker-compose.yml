@@ -6,6 +6,8 @@ services:
     container_name: mariadb
     ports:
       - 3306:3306
+    environment:
+      - ROOT_PASSWORD=123
     volumes:
       # expose mariadb config to host
       - ./etc/:/docker/etc/
