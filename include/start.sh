@@ -59,7 +59,7 @@ then
 else
     # create database
     echo "Create database..."
-    mysql_install_db --user=mysql --datadir=/var/lib/mysql
+    mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
 
     # start mariadb
     echo "Create database - start mariadb..."
@@ -69,7 +69,7 @@ else
     if pgrep -x /usr/bin/mysqld > /dev/null
     then
         # create root user with remote access
-        echo "Create database - configure users..."
+        echo "Create database - configure root user..."
 
         sleep 1
 
