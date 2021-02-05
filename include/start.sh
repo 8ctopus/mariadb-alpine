@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo ""
-echo "Start container database..."
+echo "Start container mariadb..."
 
 # check if we should expose mariadb to host
 # /docker/etc/ must be set in docker-compose
@@ -55,7 +55,7 @@ then
 
     # start mariadb
     echo "Start mariadb..."
-    /usr/bin/mysqld_safe --nowatch
+    /usr/bin/mariadbd-safe --nowatch
 else
     # create database
     echo "Create database..."
@@ -63,10 +63,10 @@ else
 
     # start mariadb
     echo "Create database - start mariadb..."
-    /usr/bin/mysqld_safe --nowatch
+    /usr/bin/mariadbd-safe --nowatch
 
     # check if mariadb is running
-    if pgrep -x /usr/bin/mysqld > /dev/null
+    if pgrep -x /usr/bin/mariadbd > /dev/null
     then
         # create root user with remote access
         echo "Create database - configure root user..."
@@ -93,19 +93,19 @@ fi
 sleep 1
 
 # check if mariadb is running
-if pgrep -x /usr/bin/mysqld > /dev/null
+if pgrep -x /usr/bin/mariadbd > /dev/null
 then
-    echo "-----------------------------------------------------"
-    echo "Start container database - OK - ready for connections"
-    echo "-----------------------------------------------------"
+    echo "----------------------------------------------------"
+    echo "Start container mariadb - OK - ready for connections"
+    echo "----------------------------------------------------"
     echo "host: localhost"
     echo "port: 3306"
     echo "user: root"
     echo "password: $ROOT_PASSWORD"
-    echo "-----------------------------------------------------"
+    echo "----------------------------------------------------"
 else
-    echo "Start container database - FAILED - exit"
-    echo "----------------------------------------"
+    echo "Start container mariadb - FAILED - exit"
+    echo "---------------------------------------"
     exit
 fi
 
@@ -114,11 +114,11 @@ fi
 stop_container()
 {
     echo ""
-    echo "Stop container database... - received SIGTERM signal"
+    echo "Stop container mariadb... - received SIGTERM signal"
     echo "Stop mariadb ..."
-    killall -s SIGTERM mysqld
+    killall -s SIGTERM mariadbd
     echo "Stop mariadb - OK"
-    echo "Stop container database - OK"
+    echo "Stop container mariadb - OK"
     exit
 }
 
@@ -133,14 +133,14 @@ restart_processes()
     # restart mariadb
     echo "Restart mariadb..."
 
-    killall -s SIGTERM mysqld > /dev/null
+    killall -s SIGTERM mariadbd > /dev/null
 
     sleep 3
-    /usr/bin/mysqld_safe --nowatch
+    /usr/bin/mariadbd-safe --nowatch
     sleep 3
 
     # check if mariadb is running
-    if pgrep -x /usr/bin/mysqld > /dev/null
+    if pgrep -x /usr/bin/mariadbd > /dev/null
     then
         echo "Restart mariadb - OK"
     else
