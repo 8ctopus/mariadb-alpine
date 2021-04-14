@@ -82,6 +82,9 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 EOF
+        # add timezone info to db
+        echo "Create database - add timezone info..."
+        mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql mysql
 
         echo "Create database - OK"
     else

@@ -28,9 +28,16 @@ RUN apk add \
     mariadb \
     mariadb-client
 
+# install timezone data
+RUN apk add \
+    tzdata
+
 # enable remote connections to mariadb from any IP
 RUN sed -i 's|skip-networking|#skip-networking|g' /etc/my.cnf.d/mariadb-server.cnf
 RUN sed -i 's|#bind-address=0.0.0.0|bind-address=0.0.0.0|g' /etc/my.cnf.d/mariadb-server.cnf
+
+# set server timezone to UTC
+RUN sed -i "/^\[mysqld\]$/a default_time_zone='UTC'" /etc/my.cnf.d/mariadb-server.cnf
 
 # change mariadb log file
 RUN touch /var/log/mysqld.log
