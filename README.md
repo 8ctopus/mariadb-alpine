@@ -12,10 +12,20 @@ The docker image size is 181 MB.
 - MariaDB configuration files are exposed on the host.
 - All changes to config files are automatically applied (hot reload).
 
-## start container
+## use container
 
 ```sh
-docker-compose up
+# start container on linux and mac in shell
+docker-compose up &
+
+# start container on Windows in cmd
+start /B docker-compose up
+
+# stop container
+docker-compose stop
+
+# delete container
+docker-compose down
 ```
 
 ## connect to database
