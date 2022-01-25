@@ -87,6 +87,15 @@ docker commit mariadb mariadb-alpine-curl:dev
 
 To use the new image, update the image link in the docker-compose file.
 
+## update docker image
+
+When you update the docker image version, it's important to know that the existing configuration in `etc` may cause problems.
+To solve the problems, backup your config then delete all config files:
+
+```sh
+rm -rf etc/ log/
+```
+
 ## more info about the image
 
     https://wiki.alpinelinux.org/wiki/MariaDB
