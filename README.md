@@ -8,6 +8,8 @@ A super light docker MariaDB installation on top of Alpine Linux for development
 
 The docker image size is 195 MB.
 
+_Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sandbox
+
 ## cool features
 
 - MariaDB configuration files are exposed on the host.
