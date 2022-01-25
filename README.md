@@ -20,6 +20,8 @@ docker-compose up
 
 ## connect to database
 
+Use your favorite tool to connect. On Windows, you can try [HeidiSQL](https://github.com/HeidiSQL/HeidiSQL).
+
 ```
 hostname: localhost
 port: 3306
@@ -33,15 +35,27 @@ password: 123 (ROOT_PASSWORD environmental variable)
 docker exec -it mariadb zsh
 ```
 
-## build docker image
+## use development image
 
-```sh
-docker build -t mariadb-alpine:dev .
+- build docker development image
+
+`docker build -t mariadb-alpine:dev .`
+
+- `rm -rf etc log`
+- in docker-compose.yml
+
+```yaml
+services:
+  web:
+    # development image
+    image: mariadb-alpine:dev
 ```
 
-## extend the docker image
+- `docker-compose up`
 
-In this example, we add curl.
+## extend docker image
+
+In this example, we add the php-curl extension.
 
 ```sh
 docker-compose up --detach
