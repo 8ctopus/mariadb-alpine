@@ -1,4 +1,4 @@
-## project description
+## docker mariadb alpine
 
 A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
