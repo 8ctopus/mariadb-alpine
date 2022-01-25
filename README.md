@@ -10,11 +10,11 @@ The docker image size is 181 MB.
 ## cool features
 
 - MariaDB configuration files are exposed on the host.
-- All changes to the config files are automatically applied (hot reload).
+- All changes to config files are automatically applied (hot reload).
 
 ## start container
 
-```bash
+```sh
 docker-compose up
 ```
 
@@ -29,13 +29,13 @@ password: 123 (ROOT_PASSWORD environmental variable)
 
 ## get console to container
 
-```bash
+```sh
 docker exec -it mariadb zsh
 ```
 
 ## build docker image
 
-```bash
+```sh
 docker build -t mariadb-alpine:dev .
 ```
 
@@ -43,7 +43,7 @@ docker build -t mariadb-alpine:dev .
 
 In this example, we add curl.
 
-```bash
+```sh
 docker-compose up --detach
 docker exec -it mariadb zsh
 apk add curl
