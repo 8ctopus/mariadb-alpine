@@ -3,8 +3,8 @@
 A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
 - MariaDB 10.6.4
-- Alpine 3.15.0
 - zsh 5.8
+- Alpine 3.15.0
 
 The docker image size is 195 MB.
 
@@ -12,6 +12,8 @@ The docker image size is 195 MB.
 
 - MariaDB configuration files are exposed on the host.
 - All changes to config files are automatically applied (hot reload).
+
+_Note_: On Windows [hot reload doesn't work with WSL 2](https://github.com/microsoft/WSL/issues/4739), you need to use the legacy Hyper-V.
 
 ## use container
 
@@ -86,7 +88,3 @@ To use the new image, update the image link in the docker-compose file.
 ## more info about the image
 
     https://wiki.alpinelinux.org/wiki/MariaDB
-
-## notes
-
-In Windows hot reload doesn't work with WSL 2, you need to use the legacy Hyper-V.
