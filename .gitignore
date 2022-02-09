@@ -1,3 +1,5 @@
-/etc/
-/log/
+# docker
+/docker/
+
+# other
 /*.sublime-workspace

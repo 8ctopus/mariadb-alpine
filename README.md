@@ -19,12 +19,17 @@ _Note_: On Windows [hot reload doesn't work with WSL 2](https://github.com/micro
 
 ## use container
 
+Starting the container with `docker-compose` offers all functionalities.
+
 ```sh
-# start container on linux and mac in shell
+# start container in detached mode on linux and mac in shell
 docker-compose up &
 
-# start container on Windows in cmd
+# start container in detached mode on Windows in cmd
 start /B docker-compose up
+
+# view logs
+docker-compose logs -f
 
 # stop container
 docker-compose stop
@@ -57,9 +62,11 @@ docker exec -it mariadb zsh
 
 - build docker development image
 
-`docker build -t mariadb-alpine:dev .`
+```sh
+docker build -t mariadb-alpine:dev .
+```
 
-- `rm -rf etc log`
+- `rm -rf docker/`
 - in docker-compose.yml
 
 ```yaml
@@ -89,11 +96,11 @@ To use the new image, update the image link in the docker-compose file.
 
 ## update docker image
 
-When you update the docker image version, it's important to know that the existing configuration in `etc` may cause problems.
+When you update the docker image version, it's important to know that the existing configuration in `docker/etc` may cause problems.
 To solve the problems, backup your config then delete all config files:
 
 ```sh
-rm -rf etc/ log/
+rm -rf docker/
 ```
 
 ## more info about the image
