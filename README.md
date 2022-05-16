@@ -2,9 +2,9 @@
 
 A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
-- MariaDB 10.6.4
-- zsh 5.8
-- Alpine 3.15.0
+- MariaDB 10.6.7
+- zsh 5.8.1
+- Alpine 3.15.4
 
 The docker image size is 195 MB.
 
@@ -45,7 +45,7 @@ docker-compose logs -f
 # stop container
 docker-compose stop
 
-# delete container but volume which contains database
+# delete container but not volume which contains database
 docker-compose down
 
 # delete container and volume (database too)
@@ -109,10 +109,10 @@ _Note_: Only for repository owner
 
 ```sh
 # build image
-docker build -t 8ct8pus/mariadb-alpine:1.0.5 .
+docker build -t 8ct8pus/mariadb-alpine:1.0.6 .
 
 # push image to docker hub
-docker push 8ct8pus/mariadb-alpine:1.0.5
+docker push 8ct8pus/mariadb-alpine:1.0.6
 ```
 
 ## more info about the image
