@@ -17,16 +17,27 @@ _Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sa
 
 _Note_: On Windows [hot reload doesn't work with WSL 2](https://github.com/microsoft/WSL/issues/4739), you need to use the legacy Hyper-V.
 
+## quick start
+
+- download [`docker-compose.yml`](https://github.com/8ctopus/apache-php-fpm-alpine/blob/master/docker-compose.yml)
+- start `Docker Desktop` and run `docker-compose up`
+- connect to MariaDB on `localhost`
+
+    hostname: localhost
+    port: 3306
+    user: root
+    password: 123 (ROOT_PASSWORD environmental variable)
+
 ## use container
 
 Starting the container with `docker-compose` offers all functionalities.
 
 ```sh
-# start container in detached mode on linux and mac in shell
-docker-compose up &
-
 # start container in detached mode on Windows in cmd
 start /B docker-compose up
+
+# start container in detached mode on linux, mac and mintty
+docker-compose up &
 
 # view logs
 docker-compose logs -f
@@ -34,22 +45,11 @@ docker-compose logs -f
 # stop container
 docker-compose stop
 
-# delete container but not database which is on volume
+# delete container but volume which contains database
 docker-compose down
 
-# delete container and database
+# delete container and volume (database too)
 docker-compose down -v
-```
-
-## connect to database
-
-Use your favorite tool to connect. On Windows, you can try [HeidiSQL](https://github.com/HeidiSQL/HeidiSQL).
-
-```
-hostname: localhost
-port: 3306
-user: root
-password: 123 (ROOT_PASSWORD environmental variable)
 ```
 
 ## get console to container
@@ -58,7 +58,7 @@ password: 123 (ROOT_PASSWORD environmental variable)
 docker exec -it mariadb zsh
 ```
 
-## use development image
+## development image
 
 - build docker development image
 
@@ -67,7 +67,7 @@ docker build -t mariadb-alpine:dev .
 ```
 
 - `rm -rf docker/`
-- in docker-compose.yml
+- in `docker-compose.yml`
 
 ```yaml
 services:
@@ -96,11 +96,23 @@ To use the new image, update the image link in the docker-compose file.
 
 ## update docker image
 
-When you update the docker image version, it's important to know that the existing configuration in `docker/etc` may cause problems.
-To solve the problems, backup your config then delete all config files:
+When you update the docker image version in `docker-compose.yml`, it's important to know that the existing configuration in the `docker` dir may cause problems.\
+To solve all problems, backup the existing dir then delete it.
 
 ```sh
 rm -rf docker/
+```
+
+## release docker image
+
+_Note_: Only for repository owner
+
+```sh
+# build image
+docker build -t 8ct8pus/mariadb-alpine:1.0.5 .
+
+# push image to docker hub
+docker push 8ct8pus/mariadb-alpine:1.0.5
 ```
 
 ## more info about the image
