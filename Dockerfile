@@ -1,9 +1,16 @@
-FROM alpine:3.16.0
+FROM alpine:3.16.2
 
 # expose port
 EXPOSE 3306
 
 ENV ROOT_PASSWORD 123
+
+# delete apk repositories
+RUN truncate -s 0 /etc/apk/repositories
+
+# use only edge repositories
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 
 # update apk repositories
 RUN apk update
