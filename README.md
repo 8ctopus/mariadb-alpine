@@ -1,12 +1,10 @@
-## docker mariadb alpine
+## docker mariadb alpine ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/8ct8pus/mariadb-alpine?sort=semver) ![Docker Pulls](https://img.shields.io/docker/pulls/8ct8pus/mariadb-alpine)
 
 A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
 - MariaDB 10.6.10
 - zsh 5.9
 - Alpine 3.16.2
-
-The docker image size is 195 MB.
 
 _Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sandbox
 
@@ -19,7 +17,7 @@ _Note_: On Windows [hot reload doesn't work with WSL 2](https://github.com/micro
 
 ## quick start
 
-- download [`docker-compose.yml`](https://github.com/8ctopus/apache-php-fpm-alpine/blob/master/docker-compose.yml)
+- download [`docker-compose.yml`](https://github.com/8ctopus/mariadb-alpine/blob/master/docker-compose.yml)
 - start `Docker Desktop` and run `docker-compose up`
 - connect to MariaDB on `localhost`
 
