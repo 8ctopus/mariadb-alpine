@@ -2,7 +2,7 @@
 
 A super light docker MariaDB installation on top of Alpine Linux for development purposes
 
-- MariaDB 10.6.10
+- MariaDB 10.6.11
 - zsh 5.9
 - Alpine edge
 
@@ -107,10 +107,10 @@ _Note_: Only for repository owner
 
 ```sh
 # build image
-docker build -t 8ct8pus/mariadb-alpine:1.0.8 .
+docker build -t 8ct8pus/mariadb-alpine:1.0.9 .
 
 # push image to docker hub
-docker push 8ct8pus/mariadb-alpine:1.0.8
+docker push 8ct8pus/mariadb-alpine:1.0.9
 ```
 
 ## more info about the image

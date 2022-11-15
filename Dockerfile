@@ -1,4 +1,5 @@
 FROM alpine:edge
+LABEL maintainer="8ctopus <hello@octopuslabs.io>"
 
 # expose port
 EXPOSE 3306
@@ -31,6 +32,9 @@ RUN apk add \
 # install timezone data
 RUN apk add \
     tzdata
+
+# delete apk cache
+RUN rm -rf /var/cache/apk/*
 
 # enable remote connections to mariadb from any IP
 RUN sed -i 's|skip-networking|#skip-networking|g' /etc/my.cnf.d/mariadb-server.cnf
