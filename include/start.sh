@@ -152,7 +152,8 @@ restart_processes()
 }
 
 # infinite loop, will only stop on termination signal
-while true; do
+while true;
+do
     # restart mariadb if any file in /etc/my.cnf.d changes
     inotifywait --quiet --event modify,create,delete --timeout 3 --recursive /etc/my.cnf.d/ && restart_processes
 done
