@@ -107,10 +107,10 @@ _Note_: Only for repository owner
 
 ```sh
 # build image
-docker build --no-cache -t 8ct8pus/mariadb-alpine:1.0.9 .
+docker build --no-cache -t 8ct8pus/mariadb-alpine:1.0.10 .
 
 # push image to docker hub
-docker push 8ct8pus/mariadb-alpine:1.0.9
+docker push 8ct8pus/mariadb-alpine:1.0.10
 ```
 
 ## more info about the image
