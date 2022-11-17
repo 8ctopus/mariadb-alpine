@@ -109,7 +109,7 @@ then
 else
     echo "Start container mariadb - FAILED - exit"
     echo "---------------------------------------"
-    exit
+    exit 1
 fi
 
 # https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/
@@ -122,7 +122,7 @@ stop_container()
     killall -s SIGTERM mariadbd
     echo "Stop mariadb - OK"
     echo "Stop container mariadb - OK"
-    exit
+    exit 0
 }
 
 # catch termination signals
