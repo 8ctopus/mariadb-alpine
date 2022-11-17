@@ -56,26 +56,6 @@ docker-compose down -v
 docker exec -it mariadb zsh
 ```
 
-## development image
-
-- build docker development image
-
-```sh
-docker build -t mariadb-alpine:dev .
-```
-
-- `rm -rf docker/`
-- in `docker-compose.yml`
-
-```yaml
-services:
-  web:
-    # development image
-    image: mariadb-alpine:dev
-```
-
-- `docker-compose up`
-
 ## extend docker image
 
 In this example, we add the php-curl extension.
@@ -101,7 +81,22 @@ To solve all problems, backup the existing dir then delete it.
 rm -rf docker/
 ```
 
-## release docker image
+## build development image
+
+```sh
+docker build -t mariadb-alpine:dev .
+```
+
+- update `docker-compose.yml`
+
+```yaml
+services:
+  web:
+    # development image
+    image: mariadb-alpine:dev
+```
+
+## build docker image
 
 _Note_: Only for repository owner
 
