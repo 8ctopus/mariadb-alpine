@@ -12,6 +12,9 @@ RUN apk update
 # upgrade all
 RUN apk upgrade
 
+# add tini https://github.com/krallin/tini/issues/8
+RUN apk add tini
+
 # install console tools
 RUN apk add \
     inotify-tools
@@ -58,4 +61,7 @@ RUN chmod +x /tmp/start.sh
 WORKDIR /var/lib/mysql/
 
 # set entrypoint
-ENTRYPOINT ["/tmp/start.sh"]
+ENTRYPOINT ["tini", "-vw"]
+
+# run script
+CMD ["/tmp/start.sh"]
