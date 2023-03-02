@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.17.2
 LABEL maintainer="8ctopus <hello@octopuslabs.io>"
 
 # expose port
