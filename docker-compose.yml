@@ -2,10 +2,7 @@ version: '3.7'
 
 services:
   mariadb:
-    # production
-    image: 8ct8pus/mariadb-alpine:1.0.10
-    # development image
-    #image: mariadb-alpine:dev
+    image: 8ct8pus/mariadb-alpine:1.0.11
     container_name: mariadb
     ports:
       - 3306:3306
