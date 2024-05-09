@@ -1,10 +1,10 @@
 ## docker mariadb alpine ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/8ct8pus/mariadb-alpine?sort=semver) ![Docker Pulls](https://img.shields.io/docker/pulls/8ct8pus/mariadb-alpine)
 
-A super light docker MariaDB installation on top of Alpine Linux for development purposes
+A super light docker `MariaDB` installation on top of Alpine Linux for developers.
 
-- MariaDB 10.6.12
-- zsh 5.9
-- Alpine 3.19.1
+- `MariaDB` 10.11.6
+- `zsh` 5.9
+- `Alpine` 3.19.1
 
 _Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sandbox
 
@@ -13,7 +13,7 @@ _Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sa
 - MariaDB configuration files are exposed on the host.
 - All changes to config files are automatically applied (hot reload).
 
-_Note_: On Windows [hot reload doesn't work with WSL 2](https://github.com/microsoft/WSL/issues/4739), you need to use the legacy Hyper-V.
+_Note_: On Windows [file changes notification to the container doesn't work with the WSL 2 engine](https://github.com/8ctopus/apache-php-fpm-alpine/issues), you need to use the `Hyper-V` engine. Uncheck `Use WSL 2 based engine`. What this means, is that files you update on Windows are not updated inside the container unless you use `Hyper-V`.
 
 ## quick start
 
@@ -102,10 +102,10 @@ _Note_: Only for repository owner
 
 ```sh
 # build image
-docker build --no-cache -t 8ct8pus/mariadb-alpine:1.0.11 .
+docker build --no-cache -t 8ct8pus/mariadb-alpine:1.0.12 .
 
 # push image to docker hub
-docker push 8ct8pus/mariadb-alpine:1.0.11
+docker push 8ct8pus/mariadb-alpine:1.0.12
 ```
 
 ## more info about the image
