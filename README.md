@@ -4,7 +4,7 @@ A super light docker MariaDB installation on top of Alpine Linux for development
 
 - MariaDB 10.6.12
 - zsh 5.9
-- Alpine 3.17.2
+- Alpine 3.19.1
 
 _Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sandbox
 
