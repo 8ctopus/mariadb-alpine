@@ -59,7 +59,7 @@ then
 else
     # create database
     echo "Create database..."
-    mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
+    mariadb-install-db --user=mysql --datadir=/var/lib/mysql > /dev/null
 
     # start mariadb
     echo "Create database - start mariadb..."
@@ -73,7 +73,7 @@ else
 
         sleep 1
 
-        mysql <<-EOF
+        mariadb <<-EOF
 USE mysql;
 
 # create user root with access from any host
@@ -84,7 +84,7 @@ FLUSH PRIVILEGES;
 EOF
         # add timezone info to db
         echo "Create database - add timezone info..."
-        mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql mysql
+        mariadb-tzinfo-to-sql /usr/share/zoneinfo | mariadb mysql
 
         echo "Create database - OK"
     else
