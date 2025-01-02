@@ -4,7 +4,7 @@ LABEL maintainer="8ctopus <hello@octopuslabs.io>"
 # expose port
 EXPOSE 3306
 
-ENV ROOT_PASSWORD 123
+ENV ROOT_PASSWORD=123
 
 # update apk repositories
 RUN apk update
