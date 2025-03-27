@@ -2,9 +2,9 @@
 
 A super light docker `MariaDB` installation on top of Alpine Linux for developers.
 
-- `MariaDB` 11.4.4
+- `MariaDB` 11.4.5
 - `zsh` 5.9
-- `Alpine` 3.21.0
+- `Alpine` 3.21.3
 
 _Note_: for the web server plus MariaDB, check https://github.com/8ctopus/php-sandbox
 
@@ -102,10 +102,10 @@ _Note_: Only for repository owner
 
 ```sh
 # build image
-docker build --no-cache -t 8ct8pus/mariadb-alpine:1.1.0 .
+docker build --no-cache -t 8ct8pus/mariadb-alpine:1.1.1 .
 
 # push image to docker hub
-docker push 8ct8pus/mariadb-alpine:1.1.0
+docker push 8ct8pus/mariadb-alpine:1.1.1
 ```
 
 ## more info about the image
