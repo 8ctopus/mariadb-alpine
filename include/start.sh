@@ -71,7 +71,7 @@ else
         # create root user with remote access
         echo "Create database - configure root user..."
 
-        sleep 1
+        sleep 2
 
         mariadb <<-EOF
 USE mysql;
@@ -82,6 +82,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 EOF
+
         # add timezone info to db
         echo "Create database - add timezone info..."
         mariadb-tzinfo-to-sql /usr/share/zoneinfo | mariadb mysql
